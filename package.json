@@ -1,0 +1,17 @@
+{
+  "name": "ubix",
+  "version": "1.0.0",
+  "description": "UBIX: Explainable Unified Business Identity & Activity Intelligence Platform",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node server/index.js",
+    "seed": "node server/db/seed.js",
+    "start": "NODE_ENV=production node server/index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}
