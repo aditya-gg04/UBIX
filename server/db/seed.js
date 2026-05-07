@@ -165,7 +165,7 @@ function generateAddress(district) {
     `No. ${plotNo}, ${area}, ${district}`,
     `Plot ${plotNo}, ${area}, ${district}, Karnataka`,
     `#${plotNo}, ${area}, ${district} - ${randInt(560001, 590099)}`,
-    `${plotNo}/${randInt(1,20)}, ${area}, Near ${pick(['Bus Stand', 'Railway Station', 'Main Circle', 'Post Office', 'Temple'])}, ${district}`,
+    `${plotNo}/${randInt(1, 20)}, ${area}, Near ${pick(['Bus Stand', 'Railway Station', 'Main Circle', 'Post Office', 'Temple'])}, ${district}`,
   ];
   return pick(formats);
 }
@@ -189,7 +189,7 @@ function createNameVariation(name) {
     // Spacing changes
     (n) => n.replace(/\s+/g, '  '),
     // Minor typos
-    (n) => { const i = randInt(1, n.length-2); return n.slice(0, i) + n.slice(i+1); },
+    (n) => { const i = randInt(1, n.length - 2); return n.slice(0, i) + n.slice(i + 1); },
     // Adding/removing Sri/Shree
     (n) => n.replace('Sri ', 'Shree '),
     (n) => n.replace('Shree ', 'Sri '),
@@ -400,8 +400,8 @@ function seed() {
   console.log('='.repeat(50));
   console.log(`   Departments:         ${stats.departments}`);
   console.log(`   Source Records:       ${stats.records}`);
-  console.log(`   Records with PAN:    ${stats.recordsWithPan} (${Math.round(stats.recordsWithPan/stats.records*100)}%)`);
-  console.log(`   Records with GSTIN:  ${stats.recordsWithGstin} (${Math.round(stats.recordsWithGstin/stats.records*100)}%)`);
+  console.log(`   Records with PAN:    ${stats.recordsWithPan} (${Math.round(stats.recordsWithPan / stats.records * 100)}%)`);
+  console.log(`   Records with GSTIN:  ${stats.recordsWithGstin} (${Math.round(stats.recordsWithGstin / stats.records * 100)}%)`);
   console.log(`   Activity Events:     ${stats.events}`);
   console.log(`   Unlinked Events:     ${stats.unlinked}`);
   console.log('='.repeat(50));

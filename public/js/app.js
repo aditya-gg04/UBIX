@@ -26,7 +26,7 @@ const App = {
     // Setup routing
     window.addEventListener('hashchange', () => this.handleRoute());
     this.setupNavigation();
-    
+
     // Initial route
     if (!window.location.hash) {
       window.location.hash = '#/';
@@ -79,7 +79,7 @@ const App = {
 
     this.updateActiveNav(pageName);
     const page = this.pages[pageName];
-    
+
     if (page) {
       this.container.innerHTML = '<div class="loading-container"><div class="spinner"></div><div>Loading data...</div></div>';
       try {
@@ -104,7 +104,7 @@ const App = {
       if (stats.success && stats.data) {
         const reviewBadge = document.getElementById('review-badge');
         const pendingCount = stats.data.pending_reviews;
-        
+
         if (pendingCount > 0) {
           reviewBadge.textContent = pendingCount > 99 ? '99+' : pendingCount;
           reviewBadge.style.display = 'inline-block';
@@ -123,7 +123,7 @@ const App = {
     const content = document.getElementById('modal-content');
     content.innerHTML = html;
     overlay.classList.remove('hidden');
-    
+
     // Close on click outside
     overlay.onclick = (e) => {
       if (e.target === overlay) this.closeModal();

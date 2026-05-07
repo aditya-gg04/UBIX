@@ -11,8 +11,17 @@ window.DashboardPage = {
 
     container.innerHTML = `
       <div class="page-header">
-        <h1>Platform Overview</h1>
-        <p>Unified Business Identity & Activity Intelligence metrics</p>
+        <div class="flex-between">
+          <div>
+            <h1>Platform Overview</h1>
+            <p>Unified Business Identity & Activity Intelligence metrics</p>
+          </div>
+          <div class="header-actions">
+            <button id="btn-seed-dashboard" class="btn btn-secondary">
+              <span class="btn-icon">🌱</span> Seed Data
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="kpi-grid">
@@ -130,5 +139,36 @@ window.DashboardPage = {
         }
       });
     }, 100);
+
+    this.setupEventListeners();
+  },
+
+  setupEventListeners() {
+    const seedBtn = document.getElementById('btn-seed-dashboard');
+    if (!seedBtn) return;
+
+    seedBtn.addEventListener('click', async () => {
+      const confirmed = confirm('Are you sure you want to seed the database? This will reset ALL data.');
+      if (!confirmed) return;
+
+      seedBtn.disabled = true;
+      seedBtn.innerHTML = '<span class="spinner"></span> Seeding...';
+
+      try {
+        const res = await API.post('/system/seed');
+        if (res.success) {
+          showToast('Database seeded successfully!', 'success');
+          // Reload the page to show new stats
+          setTimeout(() => window.location.reload(), 1000);
+        } else {
+          throw new Error(res.message || 'Seeding failed');
+        }
+      } catch (err) {
+        console.error('Seeding error:', err);
+        showToast(err.message, 'error');
+        seedBtn.disabled = false;
+        seedBtn.innerHTML = '<span class="btn-icon">🌱</span> Seed Data';
+      }
+    });
   }
 };
